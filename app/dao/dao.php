@@ -4,7 +4,7 @@ namespace App\DAO;
 
 use \PDO;
 
-abstract class DAO extends PDO{
+abstract class dao extends PDO{
     protected $conexao;
 
     function __construct()
