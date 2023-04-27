@@ -12,7 +12,7 @@ switch($url){
         correntistaController::entrar();
     break;
     case '/conta/pix/enviar':
-        
+
     break;
     default:
         http_response_code(403);
