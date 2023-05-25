@@ -14,7 +14,7 @@ class  correntistaController extends controller{
         $model->data_nasc = $json_obj->data_nasc;
         $model->senha = $json_obj->senha;
 
-        $model->save();
+        parent::getResponseAsJSON($model->save());
     }
 
     public static function entrar(){
