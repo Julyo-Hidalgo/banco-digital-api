@@ -17,7 +17,11 @@ class  correntistaController extends controller{
         parent::getResponseAsJSON($model->save());
     }
 
-    public static function entrar(){
+    public static function login(){
+        $json_obj = json_decode(file_get_contents('php://input'));
         
+        $model = new correntistaModel();
+
+        $model->getByCpfAndSenha($json_obj->cpf, $json_obj->senha);
     }
 }

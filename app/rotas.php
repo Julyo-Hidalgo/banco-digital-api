@@ -9,7 +9,7 @@ switch($url){
         correntistaController::save();
     break;
     case '/correntista/entrar':
-        correntistaController::entrar();
+        correntistaController::login();
     break;
     case '/conta/pix/enviar':
 
