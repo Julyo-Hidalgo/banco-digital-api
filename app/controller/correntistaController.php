@@ -22,6 +22,6 @@ class  correntistaController extends controller{
         
         $model = new correntistaModel();
 
-        $model->getByCpfAndSenha($json_obj->cpf, $json_obj->senha);
+        parent::getResponseAsJSON($model->getByCpfAndSenha($json_obj->cpf, $json_obj->senha));
     }
 }

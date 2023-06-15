@@ -14,7 +14,7 @@ class correntistaModel extends model{
             (new correntistaDAO())->update($this);
     }
 
-    public function getByCpfAndSenha($cpf, $senha){
+    public function getByCpfAndSenha($cpf, $senha) : correntistaModel{
         return ((new correntistaDAO())->selectByCpfAndSenha($cpf, $senha));
     }
 }
