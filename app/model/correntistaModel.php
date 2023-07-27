@@ -2,15 +2,19 @@
 
 namespace App\Model;
 
+use App\DAO\contaDAO;
 use App\DAO\correntistaDAO;
 
 class correntistaModel extends model{
     public $id, $nome, $cpf, $data_nasc, $senha;
 
     public function save(){
-        if($this->id == null)
+        if($this->id == null){
             (new correntistaDAO())->insert($this);
-        else
+            
+            $conta = new contaDAO();
+            
+        }else
             (new correntistaDAO())->update($this);
     }
 

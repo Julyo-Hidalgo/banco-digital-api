@@ -9,7 +9,7 @@ class correntistaDAO extends dao{
         parent::__construct();
     }
 
-    public function insert(correntistaModel $model) : bool{
+    public function insert(correntistaModel $model) : ?correntistaModel{
         $sql = "insert into correntista (nome, cpf, data_nasc, senha) values (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
@@ -17,7 +17,11 @@ class correntistaDAO extends dao{
         $stmt->bindValue(2, $model->cpf);
         $stmt->bindValue(3, $model->data_nasc);
         $stmt->bindValue(4, $model->senha);
-        return $stmt->execute();
+        $stmt->execute();
+
+        $model->id = $this->conexao->lastInsertId();
+        
+        return $model;
     }
 
     public function update(correntistaModel $model) : bool{
