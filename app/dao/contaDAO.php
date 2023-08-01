@@ -10,7 +10,7 @@ class contaDAO extends dao{
     }
 
     public function insert(contaModel $model) : bool{
-        $sql = "insert into correntista (tipo, numero, senha, id_correntista, limite, saldo) values (?, ?, ?, ?, ?, ?)";
+        $sql = "insert into conta (tipo, numero, senha, id_correntista, limite, saldo) values (?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->tipo);

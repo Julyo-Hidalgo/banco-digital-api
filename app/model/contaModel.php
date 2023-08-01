@@ -9,6 +9,7 @@ class contaModel extends model{
 
     public function save(){
         $dao = new contaDAO();
+        
         $dao->insert($this);
     }
 }
