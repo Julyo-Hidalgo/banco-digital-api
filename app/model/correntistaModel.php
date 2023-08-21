@@ -13,7 +13,7 @@ class correntistaModel extends model{
             (new correntistaDAO())->insert($this);
             
             if ($this->id <> null){
-                $number = 0007 + rand(10000000000, 99999999999);
+                $number = 0007 + rand(1000000, 9999999);
 
                 $conta = new contaModel();
                 $conta->tipo = "C";
