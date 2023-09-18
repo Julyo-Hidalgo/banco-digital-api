@@ -32,11 +32,13 @@ class correntistaModel extends model{
                 $conta->saldo = 300;
                 $conta->save();
             }
-        }else
+        }else{
             (new correntistaDAO())->update($this);
+        }
     }
 
-    public function getByCpfAndSenha($cpf, $senha) : correntistaModel{
+    public function getByCpfAndSenha($cpf, $senha) : contaModel
+    {
         return ((new correntistaDAO())->selectByCpfAndSenha($cpf, $senha));
     }
 }

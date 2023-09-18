@@ -2,7 +2,10 @@
 
 namespace App\DAO;
 
+use App\Model\contaModel;
 use App\Model\correntistaModel;
+use App\Model\model;
+use PDO;
 
 class correntistaDAO extends dao{
     public function __construct(){
@@ -28,16 +31,16 @@ class correntistaDAO extends dao{
         return 1;
     }
 
-    public function selectByCpfAndSenha($cpf, $senha) : correntistaModel{
-        $sql = "SELECT * FROM correntista where cpf = ? and senha = ? ";
+    public function selectByCpfAndSenha($cpf, $senha) : contaModel{
+        $sql = "SELECT tipo, numero, ct.senha, id_correntista, limite, SUM(saldo) AS saldo FROM conta AS ct JOIN correntista ON ct.id_correntista = correntista.id WHERE correntista.cpf = ? AND correntista.senha = ? GROUP BY ct.id_correntista";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $cpf);
         $stmt->bindValue(2, $senha);
         $stmt->execute();
         
-        $obj = $stmt->fetchObject("App\Model\correntistaModel");
-
-        return is_object($obj) ? $obj : new correntistaModel();
+        $obj = $stmt->fetchAll(PDO::FETCH_CLASS, "\App\Model\contaModel");
+        
+        return is_object($obj[0]) ? $obj[0] : new contaModel();
     }
 }
