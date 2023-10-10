@@ -2,8 +2,21 @@
 
 namespace App\DAO;
 
+use App\Model\transacaoModel;
+
 class transacaoDAO extends dao{
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
+    }
+
+    public function insert(transacaoModel $model) : bool
+    {
+        $sql = "INSERT INTO transacao_correntista_assoc (valor, data_transacao) VALUES (?, ?)";
+        
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $model->valor);
+        $stmt->bindValue(2, $model->data_transacao);
+        return $stmt->execute();
     }
 }
