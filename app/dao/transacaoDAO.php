@@ -17,6 +17,10 @@ class transacaoDAO extends dao{
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->data_transacao);
-        return $stmt->execute();
+        $response = $stmt->execute();
+
+        $model->id = $this->conexao->lastInsertId();
+        
+        return $response;
     }
 }

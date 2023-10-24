@@ -3,6 +3,7 @@
 namespace App\DAO;
 
 use App\Model\contaModel;
+use PDO;
 
 class contaDAO extends dao{
     public function __construct(){
@@ -20,5 +21,16 @@ class contaDAO extends dao{
         $stmt->bindValue(5, $model->limite);
         $stmt->bindValue(6, $model->saldo);
         return $stmt->execute();
+    }
+
+    public function selectByChavePix($chavePix)
+    {
+        $sql = "SELECT id FROM conta as co JOIN chave_pix as ch.id_conta = co.id ON id_conta  where = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $chavePix);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 }

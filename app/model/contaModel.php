@@ -12,4 +12,11 @@ class contaModel extends model{
         
         $dao->insert($this);
     }
+
+    public function getByChavePix($chavePix)
+    {
+        $dao = new contaDAO();
+
+        return $dao->selectByChavePix($chavePix);
+    }
 }
