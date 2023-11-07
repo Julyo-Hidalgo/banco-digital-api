@@ -30,6 +30,11 @@ switch($url){
         transacaoController::save();
     break;
     
+    //associação transação e correntista
+    case '/transacaoCorrentistaAssoc/save':
+        transacao_correntista_assocController::save();
+    break;
+
     default:
         http_response_code(403);
     break;

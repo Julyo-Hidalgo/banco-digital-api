@@ -10,11 +10,9 @@ class transacaoController extends controller{
         $data = parent::getDataFromRequest();
 
         $transacao = new transacaoModel();
-        $transacaoCorrentistaAssoc = new transacao_correntista_assocModel;
 
         parent::fillModel($transacao, $data);
-        parent::fillModel($transacaoCorrentistaAssoc, $data);
 
-        parent::getResponseAsJSON($transacao->save($transacaoCorrentistaAssoc));
+        parent::getResponseAsJSON($transacao->save());
     }
 }
