@@ -8,7 +8,7 @@ class chavePixDAO extends dao
 {
 
     public function insert(chavePixModel $model) : bool{
-        $sql = "insert into conta (chave, tipo, id_conta) values (?, ?, ?)";
+        $sql = "insert into chave_pix (chave, tipo, id_conta) values (?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->chave);
