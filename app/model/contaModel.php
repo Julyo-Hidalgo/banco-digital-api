@@ -15,8 +15,13 @@ class contaModel extends model{
 
     public function getByChavePix($chavePix)
     {
-        $dao = new contaDAO();
 
-        return $dao->selectByChavePix($chavePix);
+        return (new contaDAO())->selectByChavePix($chavePix);
+
+    }
+
+    public function getByAccountNumber($accountNumber)
+    {
+        return (new contaDAO())->selectByAccountNumber($accountNumber);
     }
 }

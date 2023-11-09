@@ -41,4 +41,10 @@ class correntistaModel extends model{
     {
         return ((new correntistaDAO())->selectByCpfAndSenha($cpf, $senha));
     }
+
+    public function generateAccountNumber()
+    {
+        $number = 0007 + rand(1000000, 9999999);
+        
+    }
 }
