@@ -10,7 +10,8 @@ class contaDAO extends dao{
         parent::__construct();
     }
 
-    public function insert(contaModel $model) : bool{
+    public function insert(contaModel $model)
+    {
         $sql = "insert into conta (tipo, numero, senha, id_correntista, limite, saldo) values (?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
@@ -20,7 +21,7 @@ class contaDAO extends dao{
         $stmt->bindValue(4, $model->id_correntista);
         $stmt->bindValue(5, $model->limite);
         $stmt->bindValue(6, $model->saldo);
-        return $stmt->execute();
+        $stmt->execute();
     }
 
     public function selectByChavePix($chavePix)

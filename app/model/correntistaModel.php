@@ -13,8 +13,6 @@ class correntistaModel extends model{
             (new correntistaDAO())->insert($this);
             
             if ($this->id <> null){
-                $response = true;
-                
                 $conta = new contaModel();
                 $conta->tipo = "C";
                 $conta->numero = $this->generateAccountNumber();
@@ -22,7 +20,7 @@ class correntistaModel extends model{
                 $conta->id_correntista = $this->id;
                 $conta->limite = 0;
                 $conta->saldo = 0;
-                $response += $conta->save();
+                $conta->save();
                 
                 $conta->tipo = "P";
                 $conta->numero = $this->generateAccountNumber();
@@ -30,10 +28,8 @@ class correntistaModel extends model{
                 $conta->id_correntista = $this->id;
                 $conta->limite = 3000;
                 $conta->saldo = 300;
-                $response += $conta->save();
+                $conta->save();
             }
-        
-            return $response;
         }else{
             (new correntistaDAO())->update($this);
         }
