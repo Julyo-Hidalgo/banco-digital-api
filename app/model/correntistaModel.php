@@ -13,11 +13,9 @@ class correntistaModel extends model{
             (new correntistaDAO())->insert($this);
             
             if ($this->id <> null){
-                $number = 0007 + rand(1000000, 9999999);
-
                 $conta = new contaModel();
                 $conta->tipo = "C";
-                $conta->numero = $number;
+                $conta->numero = $this->generateAccountNumber();
                 $conta->senha = $this->senha;
                 $conta->id_correntista = $this->id;
                 $conta->limite = 0;
@@ -25,7 +23,7 @@ class correntistaModel extends model{
                 $conta->save();
                 
                 $conta->tipo = "P";
-                $conta->numero = $number;
+                $conta->numero = $this->generateAccountNumber();
                 $conta->senha = $this->senha;
                 $conta->id_correntista = $this->id;
                 $conta->limite = 3000;
@@ -42,9 +40,16 @@ class correntistaModel extends model{
         return ((new correntistaDAO())->selectByCpfAndSenha($cpf, $senha));
     }
 
-    public function generateAccountNumber()
+    public function generateAccountNumber() : void
     {
         $number = 0007 + rand(1000000, 9999999);
-        
+        $this->validateAccountNumber($number);
+    }
+
+    public function validateAccountNumber($number)
+    {
+        $alreadyExist = (new contaModel())->getByAccountNumber($number);
+
+        return ($alreadyExist == true) ? $this->generateAccountNumber() : $number;
     }
 }

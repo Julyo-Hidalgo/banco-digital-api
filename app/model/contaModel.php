@@ -20,6 +20,13 @@ class contaModel extends model{
 
     }
 
+    public function getByNumber($number)
+    {
+
+        return (new contaDAO())->selectByAccountNumber($number);
+
+    }
+
     public function getByAccountNumber($accountNumber)
     {
         return (new contaDAO())->selectByAccountNumber($accountNumber);
