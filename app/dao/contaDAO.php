@@ -36,12 +36,12 @@ class contaDAO extends dao{
 
     public function selectByAccountNumber($accountNumber)
     {
-        $sql = "SELECT id FROM conta as co JOIN chave_pix as ch.id_conta = co.id ON id_conta  where numero = ?";
+        $sql = "SELECT co.id FROM conta AS co JOIN chave_pix AS ch ON ch.id_conta = co.id WHERE co.numero = ?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $accountNumber);
         $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        $teste = $stmt->fetchObject('App\Model\model');
+        return $teste;
     }
 }

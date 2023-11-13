@@ -8,22 +8,13 @@ class contaModel extends model{
     public $id, $tipo, $numero, $senha, $id_correntista, $limite, $saldo, $data_abertura;
 
     public function save(){
-        $dao = new contaDAO();
-        
-        $dao->insert($this);
+        return (new contaDAO())->insert($this);
     }
 
     public function getByChavePix($chavePix)
     {
 
         return (new contaDAO())->selectByChavePix($chavePix);
-
-    }
-
-    public function getByNumber($number)
-    {
-
-        return (new contaDAO())->selectByAccountNumber($number);
 
     }
 
